@@ -1,6 +1,7 @@
 #include "heap.h"
 #include <stdio.h>
 #include <malloc.h>
+#include "tests.c"
 
 
 int numberCount(FILE *file) {
@@ -22,6 +23,13 @@ void read(FILE *file, int size, int *data) {
     }
 }
 
+void tests(){
+    test_sort();
+    test_max();
+    test_add();
+    test_build();
+}
+
 int main(int argc, char **argv) {
     if (argc != 3) return -1;
 
@@ -40,6 +48,7 @@ int main(int argc, char **argv) {
     }
     fclose(fout);
     free(arr);
+    //tests();
     return 0;
 }
 
