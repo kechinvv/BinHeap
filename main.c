@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
         fprintf(fout, "%d\n", arr[i]);
     }
     fclose(fout);
-    deinit(arr);
+    free(arr);
     return 0;
 }
 

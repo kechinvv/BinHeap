@@ -22,7 +22,7 @@ void heapify(int *arr, int size, int i) {
 void increase(int *arr, int i, int key) {
     if (key < arr[i]) return;
     arr[i] = key;
-    while (i > 1 && arr[i / 2] < arr[i]) {
+    while (i > 0 && arr[i / 2] < arr[i]) {
         int v = arr[i / 2];
         arr[i / 2] = arr[i];
         arr[i] = v;
@@ -31,9 +31,10 @@ void increase(int *arr, int i, int key) {
 }
 
 void insert(int *arr, int size, int element) {
-    arr = (int *) realloc(arr, (size + 1) * sizeof(int));
-    arr[size] = INT_MIN;
-    increase(arr, size + 1, element);
+    size++;
+    arr = (int *) realloc(arr, (size) * sizeof(int));
+    arr[size-1] = INT_MIN;
+    increase(arr, size-1, element);
 }
 
 
@@ -47,12 +48,13 @@ int *build(int *data, int size) {
 }
 
 void sort(int *arr, int size) {
-    for (int i = size-1; i >= 0; i--) {
+    int s = size;
+    for (int i = s-1; i >= 0; i--) {
         int v = arr[i];
         arr[i] = arr[0];
         arr[0] = v;
-        size--;
-        heapify(arr, size, 0);
+        s--;
+        heapify(arr, s, 0);
     }
 }
 
@@ -64,6 +66,4 @@ int extract_max(int *arr, int size) {
     return max;
 }
 
-void deinit(int *arr) {
-    free(arr);
-}
+
