@@ -21,9 +21,10 @@ void read(FILE *file, int size, int *data) {
     }
 }
 
-int main(int arcc, char **arcv) {
-    FILE *fin;
-    fin = fopen("C:/Users/valer/Desktop/data.txt", "r");
+int main(int argc, char **argv) {
+    if (argc != 3) return -1;
+
+    FILE *fin = fopen(argv[1], "r");
     int size = numberCount(fin);
     int *data = (int *) malloc(sizeof(int) * size);
     read(fin, size, data);
@@ -32,10 +33,9 @@ int main(int arcc, char **arcv) {
     for (int i = 0; i < size; ++i) {
         printf("%d\n", arr[i]);
     }
-    FILE *fout;
-    fout = fopen("C:/Users/valer/Desktop/data2.txt", "w");
+    FILE *fout = fopen(argv[2], "w");
     for (int i = 0; i < size; ++i) {
-        fprintf(fout,"%d\n", arr[i]);
+        fprintf(fout, "%d\n", arr[i]);
     }
     fclose(fout);
     deinit(arr);

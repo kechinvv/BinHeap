@@ -3,7 +3,7 @@
 //
 #include <malloc.h>
 #include <string.h>
-
+#include <limits.h>
 
 void heapify(int *arr, int size, int i) {
     int left = 2 * i;
@@ -30,24 +30,24 @@ void increase(int *arr, int i, int key) {
     }
 }
 
-void insert(int* arr,int size, int element) {
-    arr = (int *)realloc(arr,(size+1)*sizeof(int));
-    arr[size] = -2147483648;
-    increase(arr,size+1,element);
+void insert(int *arr, int size, int element) {
+    arr = (int *) realloc(arr, (size + 1) * sizeof(int));
+    arr[size] = INT_MIN;
+    increase(arr, size + 1, element);
 }
 
 
-int* build(int* data, int size) {
-    int *arr = (int*)malloc(sizeof(int) * size);
-    memcpy(&arr,&data, size);
+int *build(int *data, int size) {
+    int *arr = (int *) malloc(sizeof(int) * size);
+    memcpy(&arr, &data, size);
     for (int i = size / 2; i >= 0; i--) {
         heapify(arr, size, i);
     }
     return arr;
 }
 
-void sort(int* arr, int size){
-    for (int i = size; i >= 0; i--){
+void sort(int *arr, int size) {
+    for (int i = size; i >= 0; i--) {
         int v = arr[i];
         arr[i] = arr[0];
         arr[0] = v;
@@ -55,14 +55,14 @@ void sort(int* arr, int size){
     }
 }
 
-int extract_max(int *arr, int size){
+int extract_max(int *arr, int size) {
     int max = arr[0];
-    arr[0] = arr[size-1];
+    arr[0] = arr[size - 1];
     size--;
     heapify(arr, size, 0);
     return max;
 }
 
-void deinit(int *arr){
+void deinit(int *arr) {
     free(arr);
 }
