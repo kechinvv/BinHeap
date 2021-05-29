@@ -1,9 +1,11 @@
 //
 // Created by valer on 28.05.2021.
 //
+#include "heap.h"
 #include <malloc.h>
 #include <string.h>
 #include <limits.h>
+
 
 void heapify(int *arr, int size, int i) {
     int left = 2 * i;
@@ -30,11 +32,12 @@ void increase(int *arr, int i, int key) {
     }
 }
 
-void insert(int *arr, int size, int element) {
+int *insert(int *arr, int size, int element) {
     size++;
     arr = (int *) realloc(arr, (size) * sizeof(int));
-    arr[size-1] = INT_MIN;
-    increase(arr, size-1, element);
+    arr[size - 1] = INT_MIN;
+    increase(arr, size - 1, element);
+    return arr;
 }
 
 
@@ -49,7 +52,7 @@ int *build(int *data, int size) {
 
 void sort(int *arr, int size) {
     int s = size;
-    for (int i = s-1; i >= 0; i--) {
+    for (int i = s - 1; i >= 0; i--) {
         int v = arr[i];
         arr[i] = arr[0];
         arr[0] = v;
@@ -65,5 +68,4 @@ int extract_max(int *arr, int size) {
     heapify(arr, size, 0);
     return max;
 }
-
 

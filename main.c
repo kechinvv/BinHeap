@@ -1,6 +1,7 @@
+#include "heap.h"
 #include <stdio.h>
 #include <malloc.h>
-#include "heap.c"
+
 
 int numberCount(FILE *file) {
     fseek(file, 0, SEEK_SET);
