@@ -47,11 +47,12 @@ int *build(int *data, int size) {
 }
 
 void sort(int *arr, int size) {
-    for (int i = size; i >= 0; i--) {
+    for (int i = size-1; i >= 0; i--) {
         int v = arr[i];
         arr[i] = arr[0];
         arr[0] = v;
-        heapify(arr, size--, 0);
+        size--;
+        heapify(arr, size, 0);
     }
 }
 
