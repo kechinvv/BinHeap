@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
     }
     fclose(fout);
     free(arr);
-    //tests();
+    tests();
     return 0;
 }
 
