@@ -4,7 +4,6 @@
 #include <assert.h>
 #include <malloc.h>
 #include <stdlib.h>
-#include "heap.h"
 #include <limits.h>
 
 
@@ -23,7 +22,7 @@ void test_build() {
     int *arr = build(data, size);
     for (int i = 0; i < size; ++i) {
         if (2 * i + 2 < size) if (arr[i] < arr[2 * i + 2]) flag = -1;
-        if (2 * i +1 < size) if (arr[i] < arr[2 * i + 1]) flag = -1;
+        if (2 * i + 1 < size) if (arr[i] < arr[2 * i + 1]) flag = -1;
     }
     assert(flag == 0);
     free(arr);
