@@ -7,4 +7,5 @@ add_library(heap STATIC heap.c heap.h)
 add_executable(untitled main.c)
 TARGET_LINK_LIBRARIES(untitled heap)
 
-
+add_executable(tests tests.c)
+TARGET_LINK_LIBRARIES(tests heap)

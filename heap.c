@@ -22,21 +22,18 @@ void heapify(int *arr, int size, int i) {
 }
 
 void increase(int *arr, int i, int key) {
-    if (key < arr[i]) return;
     arr[i] = key;
-    while (i > 0 && arr[i / 2] < arr[i]) {
-        int v = arr[i / 2];
-        arr[i / 2] = arr[i];
+    while (i > 0 && arr[(i - 1) / 2] < arr[i]) {
+        int v = arr[(i - 1) / 2];
+        arr[(i - 1) / 2] = arr[i];
         arr[i] = v;
-        i = i / 2;
+        i = (i - 1) / 2;
     }
 }
 
 int *insert(int *arr, int size, int element) {
-    size++;
-    arr = (int *) realloc(arr, (size) * sizeof(int));
-    arr[size - 1] = INT_MIN;
-    increase(arr, size - 1, element);
+    arr = (int *) realloc(arr, (size + 1) * sizeof(int));
+    increase(arr, size, element);
     return arr;
 }
 

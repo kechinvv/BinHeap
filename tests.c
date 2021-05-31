@@ -5,7 +5,8 @@
 #include <malloc.h>
 #include <stdlib.h>
 #include <limits.h>
-
+#include <stdio.h>
+#include "heap.h"
 
 int *createArr(int size) {
     int *arr = (int *) malloc(sizeof(int) * size);
@@ -61,8 +62,8 @@ void test_add() {
     assert(flag == 0);
 
     for (int i = 0; i < size; ++i) {
+        if (2 * i + 2 < size) if (arr[i] < arr[2 * i + 2]) flag = -1;
         if (2 * i + 1 < size) if (arr[i] < arr[2 * i + 1]) flag = -1;
-        if (2 * i < size) if (arr[i] < arr[2 * i]) flag = -1;
     }
     assert(flag == 0);
 
@@ -91,4 +92,11 @@ void test_max() {
     assert(flag == 0);
     free(arr);
     free(data);
+}
+
+int main() {
+    test_build();
+    test_add();
+    test_max();
+    test_sort();
 }
