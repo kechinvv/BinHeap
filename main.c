@@ -32,7 +32,6 @@ void tests(){
 
 int main(int argc, char **argv) {
     if (argc != 3) return -1;
-
     FILE *fin = fopen(argv[1], "r");
     int size = numberCount(fin);
     int *data = (int *) malloc(sizeof(int) * size);
@@ -48,6 +47,7 @@ int main(int argc, char **argv) {
     }
     fclose(fout);
     free(arr);
+    free(data);
     tests();
     return 0;
 }
